@@ -1,0 +1,20 @@
+{
+  "name": "panetry",
+  "version": "1.0.0",
+  "description": "A platform for small bakeries where they can manage day to day operations and showcast a storefront.",
+  "homepage": "https://github.com/kpcastillo/panetry#readme",
+  "bugs": {
+    "url": "https://github.com/kpcastillo/panetry/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpcastillo/panetry.git"
+  },
+  "license": "ISC",
+  "author": "Karen Paz Castillo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
