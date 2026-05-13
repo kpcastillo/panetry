@@ -1,20 +1,35 @@
 {
   "name": "panetry",
-  "version": "1.0.0",
-  "description": "A platform for small bakeries where they can manage day to day operations and showcast a storefront.",
-  "homepage": "https://github.com/kpcastillo/panetry#readme",
-  "bugs": {
-    "url": "https://github.com/kpcastillo/panetry/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kpcastillo/panetry.git"
-  },
-  "license": "ISC",
-  "author": "Karen Paz Castillo",
-  "type": "commonjs",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.14.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-router-dom": "^7.15.0",
+    "recharts": "^3.8.1",
+    "zustand": "^5.0.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.5.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.3.0",
+    "vite": "^8.0.12"
   }
 }
