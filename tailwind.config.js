@@ -3,12 +3,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        crust:   "#1a1208",
+        crust:   "#B0C4B1",
         dough:   "#f5ead7",
-        butter:  "#e8c97e",
-        jam:     "#c0392b",
+        butter:  "#D7D98A",
+        jam:     "#F88F8F",
         cream:   "#fdf6ec",
-        smoke:   "#6b5e4e",
+        smoke:   "#4A5759",
       },
       fontFamily: {
         display: ["Playfair Display", "serif"],

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-crust:  #B0C4B1;
+  --color-dough:  #f5ead7;
+  --color-butter: #D7D98A;
+  --color-jam:    #F88F8F;
+  --color-cream:  #fdf6ec;
+  --color-smoke:  #4A5759;
+
+  --font-display: "Playfair Display", serif;
+  --font-body:    "DM Sans", sans-serif;
+}
+
+body {
+  background-color: #fdf6ec;
+  font-family: "DM Sans", sans-serif;
+  color: #1a1208;
+}
