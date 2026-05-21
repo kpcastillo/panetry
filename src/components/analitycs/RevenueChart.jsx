@@ -20,14 +20,18 @@ export default function RevenueChart({ data }) {
         <AreaChart data={chartData}>
           <defs>
             <linearGradient id="rev" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#e8c97e" stopOpacity={0.4} />
-              <stop offset="95%" stopColor="#e8c97e" stopOpacity={0}   />
+              <stop offset="5%"  stopColor="#B0C4B1" stopOpacity={0.45} />
+              <stop offset="95%" stopColor="#B0C4B1" stopOpacity={0}    />
             </linearGradient>
           </defs>
-          <XAxis dataKey="day" tick={{ fontSize: 11 }} />
-          <YAxis tick={{ fontSize: 11 }} tickFormatter={v => `$${v}`} />
-          <Tooltip formatter={v => [`$${Number(v).toFixed(2)}`, "Revenue"]} />
-          <Area type="monotone" dataKey="revenue" stroke="#e8c97e" fill="url(#rev)" strokeWidth={2} />
+          <XAxis dataKey="day" tick={{ fontSize: 11, fill: "#4A5759" }} axisLine={false} tickLine={false} />
+          <YAxis tick={{ fontSize: 11, fill: "#4A5759" }} tickFormatter={v => `$${v}`} axisLine={false} tickLine={false} />
+          <Tooltip
+            formatter={v => [`$${Number(v).toFixed(2)}`, "Revenue"]}
+            contentStyle={{ borderRadius: "12px", border: "1px solid #f5ead7", fontSize: 12 }}
+            cursor={{ stroke: "#EDAFB8", strokeWidth: 1 }}
+          />
+          <Area type="monotone" dataKey="revenue" stroke="#B0C4B1" fill="url(#rev)" strokeWidth={2} dot={{ fill: "#B0C4B1", r: 3 }} activeDot={{ fill: "#EDAFB8", r: 4 }} />
         </AreaChart>
       </ResponsiveContainer>
     </div>

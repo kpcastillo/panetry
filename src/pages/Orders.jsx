@@ -2,13 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { ShoppingBag, Clock, CheckCircle2, Truck, ChevronDown } from "lucide-react";
 import StatCard from "../components/ui/StatCard";
 import { useOrderStore } from "../store/OrderStore";
-
-const STATUS = {
-  Pending:   { bg: "bg-amber-100",   text: "text-amber-800"   },
-  Baking:    { bg: "bg-blue-100",    text: "text-blue-800"    },
-  Ready:     { bg: "bg-emerald-100", text: "text-emerald-700" },
-  Delivered: { bg: "bg-gray-100",    text: "text-gray-500"    },
-};
+import { ORDER_STATUS_STYLE } from "../lib/statusColors";
 
 const STATUSES = ["Pending", "Baking", "Ready", "Delivered"];
 const TABS = ["All", ...STATUSES];
@@ -41,10 +35,10 @@ export default function Orders() {
 
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4">
-        <StatCard label="Total Orders" value={orders.length}        sub="All time"            icon={ShoppingBag}  accent="#e8c97e" />
-        <StatCard label="Pending"      value={count("Pending")}     sub="Awaiting production" icon={Clock}        accent="#e8c97e" />
-        <StatCard label="Ready"        value={count("Ready")}       sub="Ready for pickup"    icon={CheckCircle2} accent="#1a1208" />
-        <StatCard label="Delivered"    value={count("Delivered")}   sub="Completed today"     icon={Truck}        accent="#c0392b" />
+        <StatCard label="Total Orders" value={orders.length}      sub="All time"            icon={ShoppingBag}  accent="#B0C4B1" />
+        <StatCard label="Pending"      value={count("Pending")}   sub="Awaiting production" icon={Clock}        accent="#F7E1D7" />
+        <StatCard label="Ready"        value={count("Ready")}     sub="Ready for pickup"    icon={CheckCircle2} accent="#EDAFB8" />
+        <StatCard label="Delivered"    value={count("Delivered")} sub="Completed today"     icon={Truck}        accent="#DEDBD2" />
       </div>
 
       {/* Table card */}
@@ -111,7 +105,7 @@ export default function Orders() {
                     </td>
                     <td className="py-3.5 px-5 text-smoke">{fmtDate(order.created_at)}</td>
                     <td className="py-3.5 px-5">
-                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${STATUS[order.status]?.bg} ${STATUS[order.status]?.text}`}>
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-medium" style={ORDER_STATUS_STYLE[order.status]}>
                         {order.status}
                       </span>
                     </td>
@@ -162,10 +156,11 @@ export default function Orders() {
                                   key={s}
                                   onClick={e => { e.stopPropagation(); updateStatus(order.id, s); }}
                                   className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
-                                    order.status === s
-                                      ? `${STATUS[s].bg} ${STATUS[s].text} border-transparent`
-                                      : "border-dough text-smoke hover:bg-cream"
+                                    order.status === s ? "" : "border-dough text-smoke hover:bg-cream"
                                   }`}
+                                  style={order.status === s
+                                    ? { ...ORDER_STATUS_STYLE[s], borderColor: "transparent" }
+                                    : undefined}
                                 >
                                   {s}
                                 </button>

@@ -33,10 +33,10 @@ export default function Dashboard() {
       <h2 className="font-display text-2xl">Good morning 🥐</h2>
 
       <div className="grid grid-cols-4 gap-4">
-        <StatCard label="Orders Today"  value={stats.ordersToday}                    sub="Today"              icon={ShoppingBag} accent="#e8c97e" />
-        <StatCard label="Revenue"       value={`$${stats.revenue.toFixed(2)}`}        sub="Today's total"      icon={DollarSign}  accent="#c0392b" />
-        <StatCard label="In Production" value={stats.inProduction}                   sub="Items baking now"   icon={Clock}       accent="#6b5e4e" />
-        <StatCard label="Bestseller"    value={bestseller}                            sub="Most ordered item"  icon={TrendingUp}  accent="#1a1208" />
+        <StatCard label="Orders Today"  value={stats.ordersToday}              sub="Today"             icon={ShoppingBag} accent="#EDAFB8" />
+        <StatCard label="Revenue"       value={`$${stats.revenue.toFixed(2)}`} sub="Today's total"     icon={DollarSign}  accent="#B0C4B1" />
+        <StatCard label="In Production" value={stats.inProduction}             sub="Items baking now"  icon={Clock}       accent="#F7E1D7" />
+        <StatCard label="Bestseller"    value={bestseller}                     sub="Most ordered item" icon={TrendingUp}  accent="#DEDBD2" />
       </div>
 
       <div className="grid grid-cols-3 gap-6">

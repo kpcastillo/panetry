@@ -1,11 +1,5 @@
 import { useOrderStore } from "../../store/OrderStore";
-
-const STATUS_COLOR = {
-  Ready:     "bg-green-100 text-green-700",
-  Baking:    "bg-yellow-100 text-yellow-700",
-  Pending:   "bg-gray-100 text-gray-500",
-  Delivered: "bg-gray-100 text-gray-400",
-};
+import { ORDER_STATUS_STYLE } from "../../lib/statusColors";
 
 export default function RecentOrders() {
   const { orders, loading } = useOrderStore();
@@ -35,7 +29,7 @@ export default function RecentOrders() {
                   {(o.order_items ?? []).map(i => `${i.product_name} ×${i.quantity}`).join(", ") || "—"}
                 </td>
                 <td className="py-3">
-                  <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_COLOR[o.status] ?? ""}`}>
+                  <span className="px-2 py-0.5 rounded-full text-xs font-medium" style={ORDER_STATUS_STYLE[o.status]}>
                     {o.status}
                   </span>
                 </td>

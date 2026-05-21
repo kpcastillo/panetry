@@ -1,8 +1,8 @@
 const products = [
-  { name: "Croissant",      sold: 32, color: "#EDAFB8" },
-  { name: "Sourdough Loaf", sold: 24, color: "#EDAFB8" },
-  { name: "Cinnamon Roll",  sold: 18, color: "#EDAFB8" },
-  { name: "Baguette",       sold: 15, color: "#EDAFB8" },
+  { name: "Croissant",      sold: 32, color: "#EDAFB8" },  // Cherry Blossom — #1
+  { name: "Sourdough Loaf", sold: 24, color: "#B0C4B1" },  // Ash Grey       — #2
+  { name: "Cinnamon Roll",  sold: 18, color: "#F7E1D7" },  // Powder Petal   — #3
+  { name: "Baguette",       sold: 15, color: "#DEDBD2" },  // Dust Grey      — #4
 ];
 
 export default function TopProducts() {

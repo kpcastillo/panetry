@@ -43,6 +43,18 @@ insert into products (name, description, price, category, available, stock) valu
   ('Pain au Chocolat', 'Dark chocolate inside buttery pastry',     5.00, 'Pastry',   true, 16),
   ('Rye Loaf',         'Dense, earthy, with caraway seeds',       12.00, 'Bread',    true, 10);
 
+-- Table policies (open for now — tighten once auth is added)
+create policy "allow all products"    on products    for all using (true) with check (true);
+create policy "allow all orders"      on orders      for all using (true) with check (true);
+create policy "allow all order_items" on order_items for all using (true) with check (true);
+
+-- Storage bucket policies (run after creating the product-images bucket)
+-- Storage → New bucket → name: product-images → toggle Public → Create
+create policy "allow uploads"  on storage.objects for insert with check (bucket_id = 'product-images');
+create policy "allow reads"    on storage.objects for select using  (bucket_id = 'product-images');
+create policy "allow updates"  on storage.objects for update using  (bucket_id = 'product-images');
+create policy "allow deletes"  on storage.objects for delete using  (bucket_id = 'product-images');
+
 -- Sample orders
 insert into orders (customer_name, customer_email, status, total) values
   ('Emily Hartwell', 'emily@example.com', 'Pending',   34.50),

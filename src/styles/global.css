@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-crust:  #B0C4B1;
+  --color-crust:  #B0C4B1;  /* Ash Grey    */
   --color-dough:  #f5ead7;
   --color-butter: #D7D98A;
   --color-jam:    #F88F8F;
   --color-cream:  #fdf6ec;
-  --color-smoke:  #4A5759;
+  --color-smoke:  #4A5759;  /* Iron Grey   */
+  --color-cherry: #EDAFB8;  /* Cherry Blossom */
+  --color-powder: #F7E1D7;  /* Powder Petal   */
+  --color-dust:   #DEDBD2;  /* Dust Grey      */
 
   --font-display: "Playfair Display", serif;
   --font-body:    "DM Sans", sans-serif;
@@ -16,4 +19,32 @@ body {
   background-color: #fdf6ec;
   font-family: "DM Sans", sans-serif;
   color: #1a1208;
+}
+
+/* Reusable form primitives */
+.label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-smoke);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--color-dough);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background: white;
+  color: #1a1208;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  border-color: var(--color-smoke);
 }
