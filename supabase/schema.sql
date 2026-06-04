@@ -55,6 +55,27 @@ create policy "allow reads"    on storage.objects for select using  (bucket_id =
 create policy "allow updates"  on storage.objects for update using  (bucket_id = 'product-images');
 create policy "allow deletes"  on storage.objects for delete using  (bucket_id = 'product-images');
 
+-- Bakery profile (single-row — always upsert with id = 'default')
+create table bakery_profile (
+  id          text primary key default 'default',
+  bakery_name text,
+  tagline     text,
+  story       text,
+  owner_name  text,
+  owner_bio   text,
+  location    text,
+  phone       text,
+  email       text,
+  instagram   text,
+  hours       text,
+  logo_url    text,
+  cover_url   text,
+  updated_at  timestamptz default now()
+);
+
+alter table bakery_profile enable row level security;
+create policy "allow all bakery_profile" on bakery_profile for all using (true) with check (true);
+
 -- Sample orders
 insert into orders (customer_name, customer_email, status, total) values
   ('Emily Hartwell', 'emily@example.com', 'Pending',   34.50),

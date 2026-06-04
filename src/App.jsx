@@ -5,6 +5,7 @@ import Orders from "./pages/Orders";
 import Products from "./pages/Products";
 import Inventory from "./pages/Inventory";
 import Analytics from "./pages/Analytics";
+import Profile   from "./pages/Profile";
 import Shop from "./pages/Shop";
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="products"  element={<Products />} />
           <Route path="inventory" element={<Inventory />} />
           <Route path="analytics" element={<Analytics />} />
+          <Route path="profile"   element={<Profile />} />
         </Route>
 
         {/* Storefront — own layout, no sidebar */}

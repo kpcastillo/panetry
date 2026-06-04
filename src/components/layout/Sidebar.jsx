@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, ShoppingBag, Package, BarChart2, Archive, Store } from "lucide-react";
+import { LayoutDashboard, ShoppingBag, Package, BarChart2, Archive, Store, UserCircle } from "lucide-react";
 
 const links = [
   { to: "/",          label: "Dashboard",  icon: LayoutDashboard },
@@ -7,6 +7,7 @@ const links = [
   { to: "/products",  label: "Products",   icon: Package },
   { to: "/inventory", label: "Inventory",  icon: Archive },
   { to: "/analytics", label: "Analytics",  icon: BarChart2 },
+  { to: "/profile",   label: "Profile",    icon: UserCircle },
 ];
 
 export default function Sidebar() {

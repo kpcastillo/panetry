@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { ShoppingCart, Plus, Minus, X, ChevronRight, Leaf } from "lucide-react";
+import { ShoppingCart, Plus, Minus, X, ChevronRight, Leaf, MapPin, Clock, Phone, Mail, Instagram } from "lucide-react";
 import { useProductsStore } from "../store/productsStore";
+import { useProfileStore }  from "../store/profileStore";
 import { createOrder } from "../lib/queries";
 
 const CATEGORIES = ["All", "Bread", "Pastry", "Drink", "Other"];
@@ -149,7 +150,8 @@ function ProductCard({ product, qty, onAdd, onRemove }) {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function Shop() {
-  const { products, loading, fetch } = useProductsStore();
+  const { products, loading, fetch }           = useProductsStore();
+  const { profile, fetch: fetchProfile }        = useProfileStore();
   const [category,   setCategory]   = useState("All");
   const [cart,       setCart]       = useState([]);
   const [cartOpen,   setCartOpen]   = useState(false);
@@ -157,8 +159,15 @@ export default function Shop() {
   const [email,      setEmail]      = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [success,    setSuccess]    = useState(false);
+  const [storyOpen,  setStoryOpen]  = useState(false);
 
-  useEffect(() => { fetch({ availableOnly: true }); }, [fetch]);
+  useEffect(() => {
+    fetch({ availableOnly: true });
+    fetchProfile();
+  }, [fetch, fetchProfile]);
+
+  const bakeryName = profile?.bakery_name || "Panetry";
+  const tagline    = profile?.tagline     || "Fresh baked, every morning";
 
   const visible = category === "All" ? products : products.filter(p => p.category === category);
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
@@ -212,17 +221,22 @@ export default function Shop() {
   return (
     <div className="min-h-screen bg-cream">
       {/* Header */}
-      <header className="bg-crust px-8 py-5 flex items-center justify-between sticky top-0 z-40">
-        <div>
-          <div className="flex items-center gap-2">
-            <Leaf size={18} className="text-butter" />
-            <h1 className="font-display text-xl text-dough">Panetry</h1>
+      <header className="bg-smoke px-8 py-5 flex items-center justify-between sticky top-0 z-40">
+        <div className="flex items-center gap-3 min-w-0">
+          {profile?.logo_url ? (
+            <img src={profile.logo_url} alt="logo"
+              className="w-9 h-9 rounded-full object-cover shrink-0 ring-2 ring-white/20" />
+          ) : (
+            <Leaf size={18} className="text-dough/70 shrink-0" />
+          )}
+          <div className="min-w-0">
+            <h1 className="font-display text-xl text-cream leading-tight truncate">{bakeryName}</h1>
+            <p className="text-xs text-dough/60 truncate">{tagline}</p>
           </div>
-          <p className="text-xs text-dough/60 mt-0.5 ml-6">Fresh baked, every morning</p>
         </div>
         <button
           onClick={() => setCartOpen(true)}
-          className="relative flex items-center gap-2 bg-white/10 hover:bg-white/20 text-dough px-4 py-2 rounded-xl text-sm font-medium transition-colors"
+          className="relative flex items-center gap-2 bg-white/10 hover:bg-white/20 text-dough px-4 py-2 rounded-xl text-sm font-medium transition-colors shrink-0"
         >
           <ShoppingCart size={16} />
           <span>Order</span>
@@ -234,12 +248,53 @@ export default function Shop() {
         </button>
       </header>
 
+      {/* Cover image */}
+      {profile?.cover_url && (
+        <div className="w-full h-48 overflow-hidden">
+          <img src={profile.cover_url} alt="bakery cover" className="w-full h-full object-cover" />
+        </div>
+      )}
+
       <main className="max-w-5xl mx-auto px-6 py-8">
         {/* Success banner */}
         {success && (
           <div className="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl px-5 py-3 text-sm flex items-center gap-2">
             <ChevronRight size={16} />
             <span>Order placed! We'll start baking right away. 🥐</span>
+          </div>
+        )}
+
+        {/* Our Story section */}
+        {(profile?.story || profile?.owner_name) && (
+          <div className="mb-8 bg-white rounded-2xl shadow-sm overflow-hidden">
+            <button
+              onClick={() => setStoryOpen(o => !o)}
+              className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-cream/50 transition-colors"
+            >
+              <span className="font-display text-lg">Our Story</span>
+              <ChevronRight
+                size={16}
+                className={`text-smoke transition-transform ${storyOpen ? "rotate-90" : ""}`}
+              />
+            </button>
+            {storyOpen && (
+              <div className="px-6 pb-6 flex flex-col md:flex-row gap-6 border-t border-dough/60">
+                {profile.owner_name && (
+                  <div className="shrink-0 text-center md:text-left">
+                    <div className="w-16 h-16 rounded-full bg-dough flex items-center justify-center mx-auto md:mx-0 mb-2 text-2xl">
+                      🧑‍🍳
+                    </div>
+                    <p className="text-sm font-semibold text-crust">{profile.owner_name}</p>
+                    {profile.owner_bio && (
+                      <p className="text-xs text-smoke mt-1 max-w-[160px]">{profile.owner_bio}</p>
+                    )}
+                  </div>
+                )}
+                {profile.story && (
+                  <p className="text-sm text-smoke leading-relaxed pt-4">{profile.story}</p>
+                )}
+              </div>
+            )}
           </div>
         )}
 
@@ -291,6 +346,22 @@ export default function Shop() {
           </button>
         )}
       </main>
+
+      {/* Footer */}
+      {(profile?.location || profile?.hours || profile?.phone || profile?.email || profile?.instagram) && (
+        <footer className="bg-smoke mt-16 px-8 py-8">
+          <div className="max-w-5xl mx-auto">
+            <p className="font-display text-lg text-cream mb-4">{bakeryName}</p>
+            <div className="flex flex-wrap gap-x-8 gap-y-2">
+              {profile.location  && <span className="flex items-center gap-2 text-sm text-dough/70"><MapPin size={13} />{profile.location}</span>}
+              {profile.hours     && <span className="flex items-center gap-2 text-sm text-dough/70"><Clock size={13} />{profile.hours}</span>}
+              {profile.phone     && <span className="flex items-center gap-2 text-sm text-dough/70"><Phone size={13} />{profile.phone}</span>}
+              {profile.email     && <span className="flex items-center gap-2 text-sm text-dough/70"><Mail size={13} />{profile.email}</span>}
+              {profile.instagram && <span className="flex items-center gap-2 text-sm text-dough/70"><Instagram size={13} />{profile.instagram}</span>}
+            </div>
+          </div>
+        </footer>
+      )}
 
       {/* Cart drawer */}
       {cartOpen && (
