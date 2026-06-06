@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   Save, CheckCircle2, Camera, MapPin, Phone,
-  Mail, Instagram, Clock, User, BookOpen,
+  Mail, AtSign, Clock, User, BookOpen,
   Leaf, ShoppingCart, Store,
 } from "lucide-react";
 import { useProfileStore } from "../store/profileStore";
@@ -238,10 +238,10 @@ export default function Profile() {
       )}
 
       {/* Two-column layout */}
-      <div className="grid grid-cols-5 gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
 
         {/* ── Left: form ──────────────────────────────────────────────────── */}
-        <div className="col-span-3 space-y-5">
+        <div className="lg:col-span-3 space-y-5">
 
           {/* Identity */}
           <FormCard title="Identity" icon={Store}>
@@ -307,7 +307,7 @@ export default function Profile() {
             </div>
             <Field label="Instagram">
               <div className="relative">
-                <Instagram size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-smoke/50" />
+                <AtSign size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-smoke/50" />
                 <input className="input pl-8" placeholder="@yourbakery" {...bind("instagram")} />
               </div>
             </Field>
@@ -339,7 +339,7 @@ export default function Profile() {
         </div>
 
         {/* ── Right: live preview ──────────────────────────────────────────── */}
-        <div className="col-span-2 sticky top-6">
+        <div className="lg:col-span-2 lg:sticky top-6">
           <StorefrontPreview draft={draft} />
         </div>
 

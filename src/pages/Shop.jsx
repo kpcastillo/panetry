@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ShoppingCart, Plus, Minus, X, ChevronRight, Leaf, MapPin, Clock, Phone, Mail, Instagram } from "lucide-react";
+import { ShoppingCart, Plus, Minus, X, ChevronRight, Leaf, MapPin, Clock, Phone, Mail, AtSign } from "lucide-react";
 import { useProductsStore } from "../store/productsStore";
 import { useProfileStore }  from "../store/profileStore";
 import { createOrder } from "../lib/queries";
@@ -357,7 +357,7 @@ export default function Shop() {
               {profile.hours     && <span className="flex items-center gap-2 text-sm text-dough/70"><Clock size={13} />{profile.hours}</span>}
               {profile.phone     && <span className="flex items-center gap-2 text-sm text-dough/70"><Phone size={13} />{profile.phone}</span>}
               {profile.email     && <span className="flex items-center gap-2 text-sm text-dough/70"><Mail size={13} />{profile.email}</span>}
-              {profile.instagram && <span className="flex items-center gap-2 text-sm text-dough/70"><Instagram size={13} />{profile.instagram}</span>}
+              {profile.instagram && <span className="flex items-center gap-2 text-sm text-dough/70"><AtSign size={13} />{profile.instagram}</span>}
             </div>
           </div>
         </footer>

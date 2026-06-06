@@ -278,7 +278,7 @@ export default function Products() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard label="Total Products" value={products.length}  sub="In catalog"       icon={Package}       accent="#B0C4B1" />
         <StatCard label="Available"      value={available}        sub="On storefront"    icon={CheckCircle}   accent="#B0C4B1" />
         <StatCard label="Low Stock"      value={lowStock}         sub="5 or fewer left"  icon={AlertTriangle} accent="#EDAFB8" />

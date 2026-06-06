@@ -119,7 +119,7 @@ export default function Analytics() {
       <h2 className="font-display text-2xl">Analytics</h2>
 
       {/* ── KPI row ─────────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           label="Total Revenue"
           value={`$${(summary?.totalRevenue ?? 0).toFixed(2)}`}
@@ -243,10 +243,10 @@ export default function Analytics() {
       </Card>
 
       {/* ── Bottom row ──────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Top products */}
-        <Card className="col-span-2">
+        <Card className="lg:col-span-2">
           <SectionTitle>Top Products by Units Sold</SectionTitle>
 
           {topProds.length === 0 ? (

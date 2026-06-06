@@ -200,7 +200,7 @@ export default function Inventory() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard label="Total SKUs"   value={products.length} sub="Products tracked"   icon={Archive}       accent="#B0C4B1" />
         <StatCard label="In Stock"     value={inStock}         sub="More than 5 units"  icon={CheckCircle2}  accent="#B0C4B1" />
         <StatCard label="Low Stock"    value={lowStock}        sub="5 or fewer left"    icon={AlertTriangle} accent="#EDAFB8" />
@@ -269,7 +269,8 @@ export default function Inventory() {
 
         {/* Table */}
         {!loading && !error && (
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[560px]">
             <thead>
               <tr className="text-smoke text-xs uppercase tracking-widest border-b border-dough bg-cream/50">
                 <th className="py-3 px-5 text-left">Product</th>
@@ -316,7 +317,7 @@ export default function Inventory() {
                     {/* Status */}
                     <td className="py-3 px-5">
                       <span
-                        className="px-2.5 py-0.5 rounded-full text-xs font-medium"
+                        className="px-2.5 py-0.5 rounded-full text-xs font-medium whitespace-nowrap"
                         style={{ backgroundColor: meta.backgroundColor, color: meta.color }}
                       >
                         {meta.label}
@@ -360,6 +361,7 @@ export default function Inventory() {
               </tfoot>
             )}
           </table>
+          </div>
         )}
 
         {!loading && !error && sorted.length === 0 && (

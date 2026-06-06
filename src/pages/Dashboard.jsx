@@ -32,15 +32,15 @@ export default function Dashboard() {
     <div className="space-y-6">
       <h2 className="font-display text-2xl">Good morning 🥐</h2>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard label="Orders Today"  value={stats.ordersToday}              sub="Today"             icon={ShoppingBag} accent="#EDAFB8" />
         <StatCard label="Revenue"       value={`$${stats.revenue.toFixed(2)}`} sub="Today's total"     icon={DollarSign}  accent="#B0C4B1" />
         <StatCard label="In Production" value={stats.inProduction}             sub="Items baking now"  icon={Clock}       accent="#F7E1D7" />
         <StatCard label="Bestseller"    value={bestseller}                     sub="Most ordered item" icon={TrendingUp}  accent="#DEDBD2" />
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
-        <div className="col-span-2 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-6">
           <RevenueChart data={chartData} />
           <RecentOrders />
         </div>
